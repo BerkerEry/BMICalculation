@@ -26,8 +26,13 @@ second_entry.place(x=100, y=95)
 
 def click_button():
     try:
-        weight = float(first_entry.get())
-        height = float(second_entry.get())
+        weight = first_entry.get()
+        height = second_entry.get()
+        if  not height or not weight:
+            third_label.config(text="Please enter your Weight or Height.")
+            return
+        weight = float(weight)
+        height = float(height)
         new_height = height/100
         #BMI =weight/(height)^2
         BMI = weight / new_height ** 2
@@ -41,7 +46,7 @@ def click_button():
         else:
             third_label.config(text=f"Your BMI is {result}. You are Obesity.")
     except ValueError:  # Error:
-        third_label.config(text="Enter your correct Height and Weight!!!")
+        third_label.config(text="Your Height or Weight is wrong, Fix It!!!")
 
 #button
 first_button = tkinter.Button(text="Calculate", width=10, command=click_button)
@@ -50,7 +55,7 @@ first_button.place(x=110, y=120)
 
 
 #third label
-third_label = tkinter.Label(text="")
+third_label = tkinter.Label( text="")
 third_label.pack(side="top")
 third_label.place(x=40,y=150)
 
